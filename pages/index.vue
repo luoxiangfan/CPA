@@ -121,7 +121,7 @@
       <section class="container top-coupon-section">
         <h2 class="section-title">Promo Codes</h2>
         <div class="row">
-          <div class="p-2" :class="{ 'col-6': !isMobile, 'col-12': isMobile }" v-for="item in homePageData.RMcoupon" :key="item.id">
+          <!-- <div class="p-2" :class="{ 'col-6': !isMobile, 'col-12': isMobile }" v-for="item in homePageData.RMcoupon" :key="item.id">
             <div class="coupon-item row no-gutters" :class="{ 'border-radius-2': !isMobile, 'border-radius-3': isMobile }" style="display: flex;align-items: center;border: 1px solid rgba(225,225,225,1);border-radius: 5px;justify-content: space-around;">
               <div style="width: 20%;">
                 <nuxt-link
@@ -149,7 +149,57 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
+          <div class="py-1 py-sm-2 px-2" :class="{ 'col-6': !isMobile, 'col-12': isMobile }" v-for="(item, index) in homePageData.RMcoupon" :key="index">
+                <div class="coupon-item row no-gutters" :class="{ 'border-radius-2': !isMobile, 'border-radius-3': isMobile }" style="align-items: center;border: 1px solid #E1E1E1;border-radius: 2px;justify-content: space-around;">
+                  <div class="pic-box" style="width: 20%;text-align: center;">
+                    <nuxt-link
+                      class="cover-wrap position-relative"
+                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`"
+                      style="background-position: center center;background-size: contain;background-repeat: no-repeat;display:block;"
+                      :style="{ 'background-image': 'url(\'' + item.storeLogeUrl + '\')' }"
+                    >
+                    </nuxt-link>
+                    <span class="coupon-label" v-if="isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="padding: 2px 12px;display: inline;border-radius:5px;">{{ item.couponType }}</span>
+                  </div>
+                  <div class="info-box" :class="{ 'coupon-img': !isMobile }" style="width: 70%;">
+                    <div
+                      rel="nofollow"
+                      class="coupon-title text-left"
+                      @click="saveCurrCouponItem(item)"
+                      style="cursor:pointer;"
+                    >
+                      <h3 class="category-coupon-title">{{ item.title }}</h3>
+                      <span class="coupon-label-pc d-none d-lg-inline-block" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="padding: 2px 12px;font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
+                    </div>
+                    <div
+                      v-if="isMobile && item.couponType === 'CODE'"
+                      rel="nofollow"
+                      class="get_code d-block d-lg-none"
+                      target="_self"
+                      @click="saveCurrCouponItem(item)"
+                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
+                    >
+                      <div class="coupon-hop" style="right:0;left:22%;">
+                        <div class="partial-code">{{ (item.code !== null && item.code !== '') ? item.code.substring(item.code.length - 1) : '' }}</div>
+                        <div class="hide-btn d-flex align-items-center justify-content-center">
+                          <span>Show Code</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      v-if="isMobile && item.couponType === 'DEAL'"
+                      rel="nofollow"
+                      class="get_deal btn-get-deal d-block d-lg-none"
+                      style="right:0;left:26%;transform: scale(0.8);font-size:12px;border-radius: 5px;"
+                      target="_self"
+                      @click="saveCurrCouponItem(item)"
+                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
+                    >GET DEAL</div>
+                  </div>
+                </div>
+              </div>
 
           <div class="more-btn-box">
             <nuxt-link to="/store">
@@ -305,6 +355,10 @@ export default {
           slideShadows: false
         }
       });
+    },
+    saveCurrCouponItem (item) {
+      localStorage.setItem('couponItem', JSON.stringify(item))
+      this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
     }
   }
 };

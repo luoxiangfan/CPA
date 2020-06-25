@@ -1368,7 +1368,9 @@ a{
 .category-offer-num {
   color:#282828;
   float: right;
-  padding-top: 1%;
+  position: absolute;
+  right: 0;
+  /* padding-top: 1%; */
   font-family:Microsoft YaHei UI;
   font-weight:400;
 }

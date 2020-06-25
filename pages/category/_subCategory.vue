@@ -62,7 +62,7 @@
               </ul>
             </nav>
             <div class="row" style="margin:0;">
-              <div class="col-12 choice" style="padding: 0;border-bottom:1px solid #E1E1E1;">
+              <div class="col-12 choice" style="padding: 0;border-bottom:1px solid #E1E1E1;display: flex;align-items: center;position: relative;">
                 <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': allActive}" @click="selectCoupon('')">All Offers</button>
                 <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': codeActive}" @click="selectCoupon('CODE')">Coupon Codes</button>
                 <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': dealActive}" @click="selectCoupon('DEAL')">Deals</button>
