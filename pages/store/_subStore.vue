@@ -115,7 +115,7 @@
                       <span class="offer-anchor-text" :class="{ 'font-20': isMobile }">
                         <span v-for="(saleItem, index) in couponItem.sale.replace(' ', '').split(' ')" :key="index">{{ saleItem }}</span>
                       </span>
-                      <span class="label" :class="couponItem.couponType.toLowerCase()" style="margin-bottom: 0;padding: 2px 12px;font-size: 12px;">{{ couponItem.couponType }}</span>
+                      <span class="label" :class="couponItem.couponType.toLowerCase()" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
                     </div>
                   </div>
                   <div class="detail-info">
