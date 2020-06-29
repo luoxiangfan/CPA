@@ -49,7 +49,7 @@
                   target="_blank"
                   rel="nofollow"
                   class="cover"
-                  style="display: block;height: 100%;text-align: center;padding-bottom:14px;">
+                  style="display: block;height: 100%;text-align: center;padding: 14px 0;">
                   <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="width: 50%;">
                 </a>
                 <!-- <a
