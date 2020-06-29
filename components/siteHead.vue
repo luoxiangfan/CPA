@@ -18,13 +18,13 @@
         <!-- Navigation -->
         <div class="flex-grow-1">
           <ul class="navbar-nav justify-content-end">
-            <li class="nav-item nav-item__search" style="margin-left: 0;margin-right: 5%;width: 50%;">
+            <li class="nav-item nav-item__search" style="margin-left: 0;margin-right: 5%;width: 445px;">
               <form class="js-head-search-form">
                 <!-- Search Field -->
                 <div class="input-group">
                   <input
                     type="search"
-                    class="js-search__input form-control"
+                    class="js-search__input form-control pc-header-search-input"
                     placeholder="Search coupons and deals for your favourite stores"
                     data-provide="typeahead"
                     required
@@ -65,7 +65,6 @@
                       </a>
                     </li>
                   </ul>
-                  <button class="btn" type="button" style="background-image: url(/img/search.webp);background-repeat: no-repeat;background-position: center;"></button>
                 </div>
                 <!-- End Search Field -->
               </form>
@@ -75,10 +74,11 @@
               tag="li"
               to="/store"
               class="nav-item-top-stores nav-item ml-0 d-none d-lg-inline-block"
+              style="text-transform: none;display: flex !important;"
               active-class="active"
             >
-              <div class="nav-link">
-                <a href="" style="text-decoration: none;color: #282828;font-size: 15px;font-weight: 500;">All Stores</a>
+              <div class="nav-link" style="display: flex;align-items: center;">
+                <a href="">All Stores</a>
               </div>
             </nuxt-link>
 
@@ -86,10 +86,11 @@
               tag="li"
               to="/category"
               active-class="active"
+              style="text-transform: none;display: flex !important;"
               class="nav-item nav-item-category d-none d-lg-inline-block"
             >
-              <div class="nav-link">
-                <a href="" style="text-decoration: none;color: #282828;font-size: 15px;font-weight: 500;">Categories</a>
+              <div class="nav-link" style="display: flex;align-items: center;">
+                <a href="">Categories</a>
               </div>
             </nuxt-link>
           </ul>

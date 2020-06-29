@@ -98,9 +98,8 @@
             <nuxt-link
               class="store-grid-item cover-wrap"
               :class="{ 'store-coupon-btn-pc': !isMobile, 'store-coupon-btn-m': isMobile }"
-              :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`"
-              style="border: 1px solid rgba(220,220,220,1);">
-              <div class="cover">
+              :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`">
+              <div class="cover" style="border: 1px solid rgb(220, 220, 220,1);">
                 <img
                   :src="item.logoUrl"
                   class="align-self-center"
@@ -117,7 +116,7 @@
     <!-- End Top Stores -->
 
     <!-- Promo Codes -->
-    <div class="container-wrap">
+    <div class="container-wrap" style="background-color: rgba(250,250,250,1);">
       <section class="container top-coupon-section">
         <h2 class="section-title">Promo Codes</h2>
         <div class="row">
@@ -171,7 +170,7 @@
                       style="cursor:pointer;"
                     >
                       <h3 class="category-coupon-title">{{ item.title }}</h3>
-                      <span class="coupon-label-pc d-none d-lg-inline-block" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="padding: 2px 12px;font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
+                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
                     </div>
                     <div
                       v-if="isMobile && item.couponType === 'CODE'"
@@ -213,7 +212,7 @@
     <!-- End Promo Codes -->
 
     <!--  Popular Stores You May Like -->
-    <div class="container-wrap expand-container-wrap">
+    <div class="container-wrap expand-container-wrap" style="background-color: rgba(250,250,250,1);">
       <section class="container top-categories-section">
         <h2 class="section-title">
           Popular Stores You May Like
@@ -253,7 +252,7 @@
     <!-- End  Popular Stores You May Like -->
 
     <!-- Browse Top Categories -->
-    <div class="container-wrap expand-container-wrap">
+    <div class="container-wrap expand-container-wrap" style="background-color: rgba(250,250,250,1);padding-bottom: 5%;">
       <section class="container top-categories-section">
         <h2 class="section-title">
           Browse Top Categories
@@ -274,7 +273,7 @@
                 <div class="cover">
                   <img :src="item.logo" class="align-self-center" :alt="`${item.name} coupons`" :title="item.name" style="width: auto;height: auto;" />
                 </div>
-                <h3 style="color: #282828;">{{item.name}}</h3>
+                <h3 style="color: #272727;">{{item.name}}</h3>
               </a>
             </div>
           </div>

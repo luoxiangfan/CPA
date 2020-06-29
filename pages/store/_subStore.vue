@@ -25,8 +25,8 @@
                 class="store-sys-f"
                 :class="{ 'store-sys': !showMore }"
                 style="font-size: 12px;"
-              >{{ storeDetailData.Synopsis }}</h3>
-              <span class="store-see-more" v-if="storeDetailData.Synopsis !== null && storeDetailData.Synopsis !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span>
+              >{{ storeDetailData.storeDescription }}</h3>
+              <span class="store-see-more" v-if="storeDetailData.storeDescription !== null && storeDetailData.storeDescription !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span>
               <!-- Project Progress -->
             </div>
             <div style="margin-top: .5rem;">
@@ -36,33 +36,42 @@
         </div>
       </div>
     </section>
-    <div class="container-wrap store-detail-main-wrap">
+    <div class="container-wrap store-detail-main-wrap" style="background-color: rgba(250,250,250,1);padding-bottom: 5%;">
       <div class="container">
         <div class="row">
           <!-- left side -->
           <div class="col-lg-3 col-12 pr-lg-0" v-if="!isMobile">
             <!-- Panel Header -->
-            <div class="card text-left store-pc-wrap" style="align-items: center;">
-              <div class="store-pc-logo-wrap" style="height: 80px;">
+            <div class="card text-left store-pc-wrap" style="align-items: center;padding: 0;">
+              <div class="store-pc-logo-wrap" style="width: 100%;">
                 <a
                   :href="(storeDetailData.Advertising && storeDetailData.Advertising !== null && storeDetailData.Advertising !== '') ? storeDetailData.Advertising : storeDetailData.webSiteUrl"
                   target="_blank"
                   rel="nofollow"
                   class="cover"
-                  style="display: block;height: 100%;text-align: center;">
-                  <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="height: 50%;">
+                  style="display: block;height: 100%;text-align: center;padding-bottom:14px;">
+                  <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="width: 50%;">
                 </a>
+                <!-- <a
+                  :href="(storeDetailData.Advertising && storeDetailData.Advertising !== null && storeDetailData.Advertising !== '') ? storeDetailData.Advertising : storeDetailData.webSiteUrl"
+                  target="_blank"
+                  rel="nofollow"
+                  class="cover"
+                  style="display: block;width: 100%;height: 80%;text-align: center;background-repeat: no-repeat;background-position: center;"
+                  :style="{ 'background-image': 'url(\'' + storeDetailData.logo + '\')' }">
+                  <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="height: 50%;">
+                </a> -->
               </div>
               <h3>{{ storeDetailData.name }}</h3>
-              <p>{{ storeDetailData.storeDescription }}</p>
-              <div style="margin-top: .5rem;">
-                <a :href="storeDetailData.Advertising" target="_blank" rel="nofollow" class="visit-btn">Visit Website</a>
+              <p style="padding-left: 20px;padding-right:20px;">{{ storeDetailData.storeDescription }}</p>
+              <div style="margin-top: .5rem;padding-bottom: 20px;">
+                <a :href="storeDetailData.Advertising" style="width:144px;height:38px;" target="_blank" rel="nofollow" class="visit-btn">Visit Website</a>
               </div>
             </div>
-            <div class="card top-store-card">
+            <div class="card top-store-card" style="padding:0;padding-bottom:20px;">
               <p
-                style="font-size: 28px;color: #444;font-weight: normal;margin-bottom: 26px;"
-              >Top Stores</p>
+                style="font-size: 20px;color: #181818;font-weight: 400;margin-bottom: 26px;font-family:Microsoft YaHei UI;padding: 20px 20px 0 20px;"
+              >Stores</p>
               <!-- Panel Body -->
               <div class="row">
                 <div class="col-6 p-2" v-for="item in topStoreList" :key="item.id">
@@ -71,15 +80,16 @@
                     style="max-height: 100px"
                     :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`"
                   >
-                    <div class="cover">
+                    <div class="cover" style="padding: 0 20px 20px 20px;height:100%">
                       <img
                         class="img-fluid"
-                        style="height: auto;width: auto;"
+                        style="max-height:100%;height: auto;width: auto;padding-top: 5px;"
                         :alt="`${item.name} coupons`"
                         :src="item.logoUrl"
                       />
                     </div>
                   </nuxt-link>
+                  <div style="text-align: center;padding: 5px 0;font-size:12px;font-family:Microsoft YaHei UI;font-weight:400;color:rgba(24,24,24,1);">{{ item.name }}</div>
                 </div>
               </div>
               <!-- End Panel Body -->
@@ -126,7 +136,7 @@
                       :href="(couponItem.link && (couponItem.link !== '')) ? couponItem.link : couponItem.storeWebSite"
                       @click="getDeal(couponItem)"
                     >
-                      <div class="coupon-hop store-coupon" :class="{ 'store-coupon-m': isMobile, 'store-coupon-pc': !isMobile }">
+                      <div class="coupon-hop store-coupon" style="width:144px;height:38px;" :class="{ 'store-coupon-m': isMobile, 'store-coupon-pc': !isMobile }">
                         <div class="partial-code">{{ (couponItem.code !== null && couponItem.code !== '') ? couponItem.code.substring(couponItem.code.length - 1) : '' }}</div>
                         <div class="hide-btn d-flex align-items-center justify-content-center">
                           <span>Show Code</span>
@@ -135,6 +145,7 @@
                     </a>
                     <a
                       class="coupon-code-btn get_code coupon-hop-a store-coupon"
+                      style="width:144px;height:40px;"
                       :class="{ 'store-coupon-m store-coupon-btn-m': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
                       :url="`/store/${couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${couponItem.id}#get_code_${couponItem.id}`"
                       rel="nofollow"
@@ -146,6 +157,7 @@
                     <a
                       v-if="couponItem.couponType === 'DEAL'"
                       class="btn-get-deal get_deal store-coupon"
+                      style="width:144px;height:40px;"
                       :class="{ 'store-coupon-m store-coupon-btn-m': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
                       rel="nofollow"
                       target="_self"

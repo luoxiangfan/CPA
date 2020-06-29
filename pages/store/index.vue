@@ -1,8 +1,8 @@
 <template>
   <div class="js-site-main site-main">
-    <section class="page-title-banner category-banner d-none d-md-block" style="background: none">
+    <section class="page-title-banner category-banner d-none d-md-block" style="background-color: rgba(250,250,250,1);">
       <div class="container text-center">
-        <h1 class>
+        <h1 class="pc-title-size">
           Stores in
           <nuxt-link to="/">Couponpa.com</nuxt-link>
         </h1>
@@ -10,7 +10,7 @@
     </section>
 
     <!-- Blog Background Overlay Blocks -->
-    <section class="paginate-list-container-wrap mb-2 mb-md-2" style="background: none">
+    <section class="paginate-list-container-wrap" style="background-color: rgba(250,250,250,1);">
       <div class="container">
         <div class="row justify-content-center">
           <ul class="paginate-list col-12 d-flex flex-wrap justify-content-lg-center">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </section>
-    <section class="container-wrap mb-2">
+    <section class="container-wrap mb-2" style="background-color: rgba(250,250,250,1);padding-bottom: 5%;">
       <div
         class="container store-grid-container"
         v-if="$route.fullPath === '/store' || $route.query.word === 'TOP'"
@@ -55,11 +55,11 @@
           </div>
         </div>
       </div>
-      <div style="background-color: #fff" v-else>
+      <div v-else>
         <div class="container store-list-container p-3">
           <div class="row text-left">
             <div class="col-md-3 col-6" v-for="item in resData" :key="item.id">
-              <nuxt-link style="color:#282828;" :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`">{{ item.name }}</nuxt-link>
+              <nuxt-link :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`">{{ item.name }}</nuxt-link>
             </div>
           </div>
         </div>

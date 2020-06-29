@@ -1,12 +1,12 @@
 <template>
   <div class="js-site-main site-main">
-    <div class="container-wrap category-detail-container">
+    <div class="container-wrap category-detail-container" style="background-color: rgba(250,250,250,1);">
       <div class="container">
         <div class="row py-3">
           <!-- left side -->
           <div class="col-lg-3 pr-lg-0" v-if="!isMobile">
             <!-- Panel Header -->
-            <div class="card category-list-card mb-3">
+            <div class="card category-list-card mb-3" style="border:1px solid rgba(225,225,225,1);">
               <p class="card-title" style="font-size: 20px">Categories</p>
               <div class="card-body">
                 <div class="ml-4">
@@ -34,7 +34,7 @@
               </div>
             </div>
             <!-- Panel Header -->
-            <div class="card store-list-card">
+            <div class="card store-list-card" style="border:1px solid rgba(225,225,225,1);">
               <p class="card-title" style="font-size: 20px">Stores</p>
               <div class="card-body js-store-list">
                 <ul class="list-group list-group-flush">
@@ -91,7 +91,7 @@
                       style="cursor:pointer;"
                     >
                       <h3 class="category-coupon-title">{{ item.title }}</h3>
-                      <span class="coupon-label-pc d-none d-lg-inline-block" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="padding: 2px 12px;font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
+                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
                     </div>
                     <div
                       v-if="isMobile && item.couponType === 'CODE'"

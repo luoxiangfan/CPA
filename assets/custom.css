@@ -98,6 +98,9 @@ a{
   width: 80%;
   text-align: center;
 }
+.cover-wrap:hover h3{
+  color:rgba(58,187,112,1);
+}
 .cover-wrap .cover {
   height: 70%;
   width: 80%;
@@ -207,15 +210,14 @@ a{
   text-transform: uppercase;
   font-size: 25px;
   margin-left: 54px;
-  line-height: 35px;
-  height: 36px;
+  /* line-height: 35px; */
+  /* height: 36px; */
   position: relative;
   white-space: nowrap;
 }
 .u-header .nav-item > .nav-link {
   padding: 0 0.2em !important;
-  line-height: 1.3em;
-  display: inline-block;
+  /* line-height: 1.3em; */
 }
 .u-header .nav-item.active > .nav-link,
 .u-header .nav-item > .nav-link:hover {
@@ -235,10 +237,33 @@ a{
   color: #3ABB70;
   font-weight: 500;
 }
+.u-header .nav-item > .nav-link>a {
+  font-size:16px;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
+  color:rgba(39,39,39,1);
+  line-height:3px;
+}
 
 .u-header .nav-item__search {
   width: 302px;
   transition: 500ms;
+}
+.pc-title-size {
+  font-size:18px;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
+  color:rgba(40,40,40,1);
+}
+.pc-header-search-input {
+  background-color: rgba(245,245,245,1);
+  height: 46px;
+  font-family: Microsoft YaHei UI;
+  font-weight: 400;
+  color: rgba(135,135,135,1);
+  background-image: url(/img/search.webp);
+  background-repeat: no-repeat;
+  background-position: 97% center;
 }
 
 .u-header .nav-item__search form {
@@ -597,6 +622,14 @@ a{
   line-height: 27px;
   background: #555dfe;
 }
+.coupon-label-size {
+  width: 71px;
+  height: 30px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
 .coupon-label--deal-detail{
   border-radius: 3px;
   color: #fff;
@@ -902,9 +935,9 @@ a{
 }
 
 .site-footer p {
-  font-size: 12px;
-  color: #FFFFFF;
-  font-weight: bold;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
+  color:rgba(135,135,135,1);
   text-transform: uppercase;
 }
 
@@ -923,8 +956,9 @@ a{
 }
 
 .site-footer ul a {
-  font-size: 12px;
-  color: #CCCCCC;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
+  color:rgba(39,39,39,1);
 }
 
 .site-footer address {
@@ -934,7 +968,9 @@ a{
 }
 
 .site-footer address a {
-  color: #707175;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
+  color:rgba(39,39,39,1);
 }
 @media (max-width: 992px) {
   .site-footer address a {
@@ -1108,14 +1144,13 @@ a{
   font-size:14px;
   font-family:Microsoft YaHei UI;
   font-weight:400;
-  color:rgba(24,24,24,1);
+  color:rgba(28,28,28,1);
   text-decoration: none;
   line-height: 40px;
   padding: 0 10px;
 }
-
 .store-list-container a:hover {
-  color: #3ABB70;
+  color:rgba(21,185,17,1);
 }
 
 @media (max-width: 576px) {
@@ -1328,12 +1363,19 @@ a{
 }
 
 .store-pc-wrap h3 {
+  width: 100%;
+  text-align: left;
   color: #282828 !important;
   font-weight: bold !important;
   font-family: Microsoft YaHei UI;
   font-size: 14px !important;
   margin-bottom: 0 !important;
   line-height: 24px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top: 1px solid rgba(220,220,220,1);
 }
 .store-pc-wrap p {
   font-size:14px;
@@ -1399,7 +1441,7 @@ a{
   min-width: 106px;
   height: 43px;
   color: #181818;
-  background: #ffffff;
+  background-color: rgba(250,250,250,1);
   font-weight:400;
   font-family:Microsoft YaHei UI;
   outline: none;
@@ -1446,7 +1488,6 @@ a{
   }
 
   .coupon-container .choice .btn {
-    background: #fff;
     color: #000;
     min-width: unset;
     padding: 8px;
@@ -1573,7 +1614,7 @@ a{
 .coupon-container .detail-info h3 {
   font-family:Microsoft YaHei UI;
   font-weight:400;
-  font-size: 14px;
+  font-size: 18px;
   line-height:14px;
   margin-bottom: 10px;
   letter-spacing: 0;
@@ -1808,7 +1849,7 @@ a{
   color:rgba(40,40,40,1);
   padding: 14px 0;
   padding-left: 20px;
-  border-bottom: 1px solid rgba(225,225,225,1);
+  border-bottom: 1px solid rgba(220,220,220,1);
 }
 .category-p-font {
   font-size:16px;
@@ -1844,7 +1885,7 @@ a{
 }
 
 .category-detail-container .category-list-card .card-title {
-  border-bottom: 1px solid rgba(225,225,225,1);
+  border-bottom: 1px solid rgba(220,220,220,1);
 }
 
 .category-detail-container .category-list-card .list-group-item {
@@ -2303,8 +2344,6 @@ a{
 .about-main-content-box{
   background: white;
   border: 1px solid #E1E1E1;
-  border-left: none;
-  border-right: none;
 }
 .about-main-title-box{
   width: 100%;
@@ -2313,7 +2352,7 @@ a{
   font-family:Microsoft YaHei UI;
   font-weight:400;
   color:rgba(58,187,112,1);
-  border-bottom: 1px solid #ebeff2;
+  border-bottom: 1px solid #DBDBDB;
   box-sizing: border-box;
   padding-left: 20px;
   line-height: 70px;
@@ -2321,6 +2360,9 @@ a{
 .about-main-content-box .about-main-box{
   box-sizing: border-box;
   padding: 20px;
+  color: #272727;
+  font-family:Microsoft YaHei UI;
+  font-weight:400;
 }
 
 @media (min-width: 992px) {

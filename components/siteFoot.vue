@@ -19,10 +19,10 @@
           <p style="color:#888888;">couponpa.com</p>
           <ul>
             <li>
-              <nuxt-link class="link" to="/about" style="color:#282828;">About us</nuxt-link>
+              <nuxt-link class="link" to="/about">About us</nuxt-link>
             </li>
             <li>
-              <nuxt-link class to="/contact" style="color:#282828;">Contact us</nuxt-link>
+              <nuxt-link class to="/contact">Contact us</nuxt-link>
             </li>
           </ul>
         </div>
@@ -37,7 +37,7 @@
           <p style="color:#888888;">E-mail address</p>
 
           <address class>
-            <a rel="nofollow" href="mailto:cannabispromocodes@gmail.com" class style="color:#282828;display: flex;align-items: center;">
+            <a rel="nofollow" href="mailto:cannabispromocodes@gmail.com" class style="display: flex;align-items: center;">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style="height: 1rem;width: 1rem;"
@@ -63,7 +63,7 @@
       <div class="container">
         <div class="row" style="justify-content: center">
           <div class="text-right" style="color:#888888;">
-            <small class>Copyright @ 2019-2022. All Rights Reserved.</small>
+            <small class style="font-size: 14px;font-family:Microsoft YaHei UI;font-weight:400;color:rgba(135,135,135,1);">Copyright @ 2019-2022. All Rights Reserved.</small>
           </div>
         </div>
       </div>

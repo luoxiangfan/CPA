@@ -1,6 +1,6 @@
 <template>
-  <div class="js-site-main site-main" style="min-height: 501px;">
-    <div class="about-container-wrap py-0 py-md-5 mb-2" style="background: none">
+  <div class="js-site-main site-main">
+    <div class="about-container-wrap py-0 py-md-5 mb-2" style="background-color: rgba(250,250,250,1);">
       <div class="container about-container">
         <div class="row">
           <!-- Profile Sidebar -->
