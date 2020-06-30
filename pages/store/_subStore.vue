@@ -26,7 +26,7 @@
                 :class="{ 'store-sys': !showMore }"
                 style="font-size: 12px;"
               >{{ storeDetailData.storeDescription }}</h3>
-              <span class="store-see-more" v-if="storeDetailData.storeDescription !== null && storeDetailData.storeDescription !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span>
+              <span class="store-see-more" v-if="storeDetailData.storeDescription && storeDetailData.storeDescription !== null && storeDetailData.storeDescription !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span>
               <!-- Project Progress -->
             </div>
             <div style="margin-top: .5rem;">

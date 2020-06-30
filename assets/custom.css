@@ -1330,11 +1330,10 @@ a{
 }
 
 .store-info-container .store-name {
-  font-size:12px !important;
+  font-size:16px !important;
   font-family:Microsoft YaHei UI;
   font-weight:400 !important;
   color:rgba(40,40,40,1);
-  line-height:14px;
 }
 
 .store-info-container .store-name, .store-info-container .store-description {
@@ -1615,7 +1614,6 @@ a{
   font-family:Microsoft YaHei UI;
   font-weight:400;
   font-size: 18px;
-  line-height:14px;
   margin-bottom: 10px;
   letter-spacing: 0;
 }
