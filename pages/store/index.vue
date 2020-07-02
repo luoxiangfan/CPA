@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
   name: "store",
   watchQuery: ['word'],
@@ -233,6 +234,14 @@ export default {
         }
       ]
     };
+  },
+  mounted () {
+    $(function () {
+      const footerHeight = $('.js-site-footer').height();
+      const headerHeight = $('.js-site-header').height();
+      const viewportHeight = $(window).height();
+      $('.js-site-main').css('min-height', viewportHeight - footerHeight - headerHeight);
+    })
   },
   methods: {
     async storeTypeSearch () {
