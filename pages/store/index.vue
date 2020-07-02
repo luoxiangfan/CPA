@@ -40,10 +40,10 @@
             >
               <div class="cover" style="border:none;width:100%;height: 100%;">
                 <div
-                  style="width: 100%;height: 70%;text-align: center;display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;"
+                  style="width: 100%;height: 80%;text-align: center;display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;"
                 >
                   <img
-                    style="width:auto;max-height: 100%;display: inline-block;"
+                    style="width:auto;max-height: 100%;display: inline-block;padding-top:10px;"
                     :src="item.logoUrl"
                     :alt="`${item.name} coupons`"
                     :title="item.name"

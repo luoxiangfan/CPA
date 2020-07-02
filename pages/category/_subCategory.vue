@@ -38,7 +38,7 @@
               <p class="card-title" style="font-size: 20px">Stores</p>
               <div class="card-body js-store-list">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item" v-for="item in resData.storeList" :key="item.id">
+                  <li class="list-group-item" style="padding: 13px 1.25rem;" v-for="item in resData.storeList" :key="item.id">
                     <nuxt-link :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`">{{ item.name }}</nuxt-link>
                   </li>
                 </ul>
@@ -63,9 +63,9 @@
             </nav>
             <div class="row" style="margin:0;">
               <div class="col-12 choice" style="padding: 0;border-bottom:1px solid #E1E1E1;display: flex;align-items: center;position: relative;">
-                <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': allActive}" @click="selectCoupon('')">All Offers</button>
-                <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': codeActive}" @click="selectCoupon('CODE')">Coupon Codes</button>
-                <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': dealActive}" @click="selectCoupon('DEAL')">Deals</button>
+                <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': allActive, 'font-16': !isMobile}" @click="selectCoupon('')">All Offers</button>
+                <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': codeActive, 'font-16': !isMobile}" @click="selectCoupon('CODE')">Coupon Codes</button>
+                <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': dealActive, 'font-16': !isMobile}" @click="selectCoupon('DEAL')">Deals</button>
                 <span class="mb-0 category-offer-num">{{ couponCount }} Offers</span>
               </div>
             </div>
@@ -73,9 +73,10 @@
               <!-- User Block -->
               <div class="col-sm-6 col-12 py-1 py-sm-2 px-2" v-for="(item, index) in couponPage.pageData" :key="index">
                 <div class="coupon-item row no-gutters" style="align-items: center;border: 1px solid #E1E1E1;border-radius: 2px;justify-content: space-around;">
-                  <div class="pic-box" style="width: 20%;text-align: center;">
+                  <div class="pic-box" style="width: 32%;text-align: center;">
                     <nuxt-link
                       class="cover-wrap position-relative"
+                      :class="{ 'coupon-height': !isMobile }"
                       :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`"
                       style="background-position: center center;background-size: contain;background-repeat: no-repeat;display:block;"
                       :style="{ 'background-image': 'url(\'' + item.storeLogo + '\')' }"
@@ -83,7 +84,7 @@
                     </nuxt-link>
                     <span class="coupon-label" v-if="isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="padding: 2px 12px;display: inline;border-radius:5px;">{{ item.couponType }}</span>
                   </div>
-                  <div class="info-box" :class="{ 'coupon-img': !isMobile }" style="width: 70%;">
+                  <div class="info-box" :class="{ 'coupon-img': !isMobile }" style="width: 60%;">
                     <div
                       rel="nofollow"
                       class="coupon-title text-left"

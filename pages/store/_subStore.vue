@@ -1,7 +1,7 @@
 <template>
   <div class="js-site-main site-main">
     <modal v-if="dialogVisible" :dialogVisible="dialogVisible" :currCouponItem="currCouponItem" @close="dialogVisible = false" @open="dialogVisible = true" />
-    <section class="page-title-banner" v-if="isMobile">
+    <section class="page-title-banner" style="border-bottom: 1px solid #E1E1E1;" v-if="isMobile">
       <div class="container store-info-container">
         <div class="row1" style="display: flex;">
           <!-- Profle Content -->
@@ -43,14 +43,14 @@
           <div class="col-lg-3 col-12 pr-lg-0" v-if="!isMobile">
             <!-- Panel Header -->
             <div class="card text-left store-pc-wrap" style="align-items: center;padding: 0;">
-              <div class="store-pc-logo-wrap" style="width: 100%;">
+              <div class="store-pc-logo-wrap" style="width: 100%;height: 200px;">
                 <a
                   :href="(storeDetailData.Advertising && storeDetailData.Advertising !== null && storeDetailData.Advertising !== '') ? storeDetailData.Advertising : storeDetailData.webSiteUrl"
                   target="_blank"
                   rel="nofollow"
                   class="cover"
-                  style="display: block;height: 100%;text-align: center;padding: 14px 0;">
-                  <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="width: 50%;">
+                  style="display: flex;height: 100%;padding: 14px 0;justify-content: center;align-items: center;">
+                  <img :src="storeDetailData.logo" :alt="`${storeDetailData.name} coupons`" style="width: 40%;">
                 </a>
                 <!-- <a
                   :href="(storeDetailData.Advertising && storeDetailData.Advertising !== null && storeDetailData.Advertising !== '') ? storeDetailData.Advertising : storeDetailData.webSiteUrl"
@@ -70,7 +70,7 @@
             </div>
             <div class="card top-store-card" style="padding:0;padding-bottom:20px;">
               <p
-                style="font-size: 20px;color: #181818;font-weight: 400;margin-bottom: 26px;font-family:Microsoft YaHei UI;padding: 20px 20px 0 20px;"
+                style="font-size: 20px;color: #181818;font-weight: 400;margin-bottom: 26px;font-family:Microsoft YaHei UI;padding: 20px;border-bottom: 1px solid rgba(220,220,220,1);"
               >Stores</p>
               <!-- Panel Body -->
               <div class="row">
@@ -97,48 +97,51 @@
           </div>
           <div class="col-lg-9 col-12 coupon-container">
             <div class="row">
-              <div class="col-12 choice">
-                <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': allActive}" @click="selectCoupon('')">All Offers</button>
-                <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': codeActive}" @click="selectCoupon('CODE')">Coupon Codes</button>
-                <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': dealActive}" @click="selectCoupon('DEAL')">Deals</button>
+              <div class="choice" style="width:100%;padding:0;margin:0 15px;border-bottom: 1px solid #E1E1E1;">
+                <button id="type_all" class="btn btn-sm btn-all" :class="{ 'btn-active': allActive, 'font-16': !isMobile }" @click="selectCoupon('')">All Offers</button>
+                <button id="type_code" class="btn btn-sm btn-code" :class="{ 'btn-active': codeActive, 'font-16': !isMobile }" @click="selectCoupon('CODE')">Coupon Codes</button>
+                <button id="type_deal" class="btn btn-sm btn-deal" :class="{ 'btn-active': dealActive, 'font-16': !isMobile }" @click="selectCoupon('DEAL')">Deals</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12">
                 <!-- User Block -->
-                <div class="box d-flex my-2 my-sm-3" v-for="(couponItem, index) in couponList" :key="index">
+                <div class="box d-flex my-2 my-sm-3" :class="{ 'box-pc': !isMobile }" v-for="(couponItem, index) in couponList" :key="index">
                   <div class="offer d-sm-block">
                     <div
                       class="offer-anchor d-flex flex-column justify-content-center align-items-center"
-                      style="max-height: 100px"
                     >
                       <span class="offer-anchor-text" :class="{ 'font-20': isMobile }">
                         <span v-for="(saleItem, index) in couponItem.sale.replace(' ', '').split(' ')" :key="index">{{ saleItem }}</span>
                       </span>
-                      <span class="label" :class="couponItem.couponType.toLowerCase()" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
+                      <span class="label code" :class="{'font-14': !isMobile}" v-if="couponItem.couponType === 'CODE'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
+                      <span class="label deal" :class="{'font-14': !isMobile}" v-if="couponItem.couponType === 'DEAL'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
                     </div>
                   </div>
-                  <div class="detail-info">
+                  <div class="detail-info" :class="{ 'justify-content-start store-coupon-detail-info-m': isMobile, 'store-coupon-detail-info': !isMobile }">
                     <a
                       class="get_code"
+                      style="display: block;width: 100%;"
                       :href="couponItem.link && couponItem.link !== '' ? couponItem.link : couponItem.storeWebSite"
                       target="_self"
                       rel="nofollow"
                       @click="getDeal(couponItem)"
                     >
-                      <h3 class="paddl" :class="{ 'txt-color-pc': !isMobile, 'txt-color-m': isMobile }" style="margin-bottom:0;">{{ couponItem.title }}</h3>
+                      <h3 class="paddl store-coupon-title-display" :class="{ 'txt-color-pc': !isMobile, 'txt-color-m font-16': isMobile }" style="margin-bottom: 12px;">{{ couponItem.title }}</h3>
+                      <h3 class="paddl store-coupon-desc-display" :class="{ 'store-coupon-desc font-14': !isMobile }" style="margin-bottom:14px;">{{ couponItem.title }}</h3>
                     </a>
                     <a
                       v-if="(couponItem.couponType === 'CODE') && (showcompleteCode === false)"
                       rel="nofollow"
                       class="get_code"
+                      style="width: 144px;height: 38px;position: relative;"
                       target="_self"
                       :href="(couponItem.link && (couponItem.link !== '')) ? couponItem.link : couponItem.storeWebSite"
                       @click="getDeal(couponItem)"
                     >
-                      <div class="coupon-hop store-coupon" style="width:144px;height:38px;" :class="{ 'store-coupon-m': isMobile, 'store-coupon-pc': !isMobile }">
-                        <div class="partial-code">{{ (couponItem.code !== null && couponItem.code !== '') ? couponItem.code.substring(couponItem.code.length - 1) : '' }}</div>
-                        <div class="hide-btn d-flex align-items-center justify-content-center">
+                      <div class="store-coupon-hop store-coupon" style="width:144px;height:38px;" :class="{ 'store-coupon-m': isMobile, 'store-coupon-pc': !isMobile }">
+                        <div class="partial-code" style="width: inherit;height: inherit;">{{ (couponItem.code !== null && couponItem.code !== '') ? couponItem.code.substring(couponItem.code.length - 1) : '' }}</div>
+                        <div class="hide-btn d-flex align-items-center justify-content-center" style="width: inherit;height: inherit;">
                           <span>Show Code</span>
                         </div>
                       </div>
@@ -156,7 +159,7 @@
                     >{{ couponItem.code }}</a>
                     <a
                       v-if="couponItem.couponType === 'DEAL'"
-                      class="btn-get-deal get_deal store-coupon"
+                      class="btn-get-deal-store get_deal store-coupon"
                       style="width:144px;height:40px;"
                       :class="{ 'store-coupon-m store-coupon-btn-m': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
                       rel="nofollow"

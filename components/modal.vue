@@ -7,22 +7,22 @@
     aria-labelledby="exampleModalCenterTitle"
     @click="$emit('close')"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" @click="openModal" :class="{ 'width-62': !isMobile }">
-        <div class="modal-body" style="padding: 30px;">
+    <div class="modal-dialog modal-dialog-centered" :class="{ 'modal-pc': !isMobile }" role="document">
+      <div class="modal-content" :class="{ 'height-100': !isMobile }" @click="openModal">
+        <div class="modal-body" :class="{ 'd-flex justify-content-center height-100': !isMobile }" style="padding: 30px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
             <span aria-hidden="true">×</span>
           </button>
           <div class="row">
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <a class="cover" v-if="currCouponItem && currCouponItem !== {}" :href="`/store/${currCouponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
-                <img :alt="currCouponItem.name" :src="currCouponItem.storeLogo" />
+              <a :class="{ 'modal-img-wrap-pc': !isMobile }" class="cover" v-if="currCouponItem && currCouponItem !== {}" :href="`/store/${currCouponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
+                <img :class="{ 'modal-img-pc': !isMobile }" :alt="currCouponItem.name" :src="currCouponItem.storeLogo" />
               </a>
-              <a class="cover" v-if="couponItem && currCouponItem === undefined && couponItem !== {}" :href="`/store/${couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
-                <img :alt="couponItem.storeName" :src="couponItem.storeLogo" />
+              <a :class="{ 'modal-img-wrap-pc': !isMobile }" class="cover" v-if="couponItem && currCouponItem === undefined && couponItem !== {}" :href="`/store/${couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
+                <img :class="{ 'modal-img-pc': !isMobile }" :alt="couponItem.storeName" :src="couponItem.storeLogo" />
               </a>
             </div>
-            <div class="text-content col-12" v-if="currCouponItem && currCouponItem !== undefined && currCouponItem !== {}">
+            <div class="text-content col-12" :class="{ 'd-flex justify-content-center flex-column': !isMobile }" v-if="currCouponItem && currCouponItem !== undefined && currCouponItem !== {}">
               <p
                 class="coupon-title"
                 style="text-align:center;"

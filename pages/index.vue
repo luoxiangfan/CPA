@@ -269,12 +269,12 @@
         <div class="show visible-md">
           <div class="row">
             <div class="top-store-item-box col-4 col-md-4 col-lg-2 p-2" v-for="item in topCategoryList" :key="item.id">
-              <a class="store-grid-item cover-wrap" :href="`/category/${item.name}`">
+              <nuxt-link class="store-grid-item cover-wrap" :to="`/category/${item.name}`">
                 <div class="cover">
                   <img :src="item.logo" class="align-self-center" :alt="`${item.name} coupons`" :title="item.name" style="width: auto;height: auto;" />
                 </div>
                 <h3 style="color: #272727;">{{item.name}}</h3>
-              </a>
+              </nuxt-link>
             </div>
           </div>
         </div>
