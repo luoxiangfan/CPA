@@ -1,5 +1,5 @@
 <template>
-  <footer class="js-site-footer site-footer">
+  <footer class="js-site-footer site-footer" :class="{ 'border-top-m': isMobile }">
     <div class="container pt-md-5 pt-3">
       <div class="row">
         <!-- Footer Content -->
@@ -63,7 +63,7 @@
       <div class="container">
         <div class="row" style="justify-content: center">
           <div class="text-right" style="color:#888888;">
-            <small class style="font-size: 14px;font-family:Microsoft YaHei UI;font-weight:400;color:rgba(135,135,135,1);">Copyright @ 2019-2022. All Rights Reserved.</small>
+            <small class style="font-size: 14px;font-family:Microsoft YaHei UI;font-weight:400;color:rgba(136,136,136,1);">Copyright @ 2019-2022. All Rights Reserved.</small>
           </div>
         </div>
       </div>
@@ -83,7 +83,12 @@
 
 <script>
 export default {
-  name: "siteFoot"
+  name: "siteFoot",
+  computed: {
+    isMobile () {
+      return this.$store.state.global.isMobile
+    }
+  }
 };
 </script>
 

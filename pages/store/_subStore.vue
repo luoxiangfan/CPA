@@ -106,7 +106,7 @@
             <div class="row">
               <div class="col-12">
                 <!-- User Block -->
-                <div class="box d-flex my-2 my-sm-3" :class="{ 'box-pc': !isMobile }" v-for="(couponItem, index) in couponList" :key="index">
+                <div class="box d-flex my-2 my-sm-3" :class="{ 'box-pc': !isMobile, 'min-height-126': isMobile }" v-for="(couponItem, index) in couponList" :key="index">
                   <div class="offer d-sm-block">
                     <div
                       class="offer-anchor d-flex flex-column justify-content-center align-items-center"
@@ -128,18 +128,19 @@
                       @click="getDeal(couponItem)"
                     >
                       <h3 class="paddl store-coupon-title-display" :class="{ 'txt-color-pc': !isMobile, 'txt-color-m font-16': isMobile }" style="margin-bottom: 12px;">{{ couponItem.title }}</h3>
-                      <h3 class="paddl store-coupon-desc-display" :class="{ 'store-coupon-desc font-14': !isMobile }" style="margin-bottom:14px;">{{ couponItem.title }}</h3>
+                      <h3 class="paddl store-coupon-desc-display" :class="{ 'store-coupon-desc font-14': !isMobile, 'store-coupon-desc-m': isMobile }" style="margin-bottom:14px;">{{ couponItem.title }}</h3>
                     </a>
                     <a
                       v-if="(couponItem.couponType === 'CODE') && (showcompleteCode === false)"
                       rel="nofollow"
                       class="get_code"
                       style="width: 144px;height: 38px;position: relative;"
+                      :class="{ 'store-show-code-m': isMobile }"
                       target="_self"
                       :href="(couponItem.link && (couponItem.link !== '')) ? couponItem.link : couponItem.storeWebSite"
                       @click="getDeal(couponItem)"
                     >
-                      <div class="store-coupon-hop store-coupon" style="width:144px;height:38px;" :class="{ 'store-coupon-m': isMobile, 'store-coupon-pc': !isMobile }">
+                      <div class="store-coupon-hop store-coupon" style="width:144px;height:38px;" :class="{ 'store-coupon-m store-show-code-m': isMobile, 'store-coupon-pc': !isMobile }">
                         <div class="partial-code" style="width: inherit;height: inherit;">{{ (couponItem.code !== null && couponItem.code !== '') ? couponItem.code.substring(couponItem.code.length - 1) : '' }}</div>
                         <div class="hide-btn d-flex align-items-center justify-content-center" style="width: inherit;height: inherit;">
                           <span>Show Code</span>

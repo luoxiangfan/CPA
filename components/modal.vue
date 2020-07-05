@@ -7,9 +7,9 @@
     aria-labelledby="exampleModalCenterTitle"
     @click="$emit('close')"
   >
-    <div class="modal-dialog modal-dialog-centered" :class="{ 'modal-pc': !isMobile }" role="document">
-      <div class="modal-content" :class="{ 'height-100': !isMobile }" @click="openModal">
-        <div class="modal-body" :class="{ 'd-flex justify-content-center height-100': !isMobile }" style="padding: 30px;">
+    <div class="modal-dialog modal-dialog-centered" :class="{ 'modal-pc': !isMobile, 'modal-mobile': isMobile }" role="document">
+      <div class="modal-content" :class="{ 'height-100': !isMobile, 'height-100': isMobile }" @click="openModal">
+        <div class="modal-body" :class="{ 'd-flex justify-content-center height-100': !isMobile, 'd-flex justify-content-center height-100': isMobile }" style="padding: 30px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
             <span aria-hidden="true">×</span>
           </button>
@@ -25,6 +25,7 @@
             <div class="text-content col-12" :class="{ 'd-flex justify-content-center flex-column': !isMobile }" v-if="currCouponItem && currCouponItem !== undefined && currCouponItem !== {}">
               <p
                 class="coupon-title"
+                :class="{ 'font-16': isMobile }"
                 style="text-align:center;"
               >{{ currCouponItem.title }}</p>
               <!-- <p class="coupon-source">
@@ -47,6 +48,7 @@
             <div class="text-content col-12" v-if="couponItem && currCouponItem === undefined && couponItem !== {}">
               <p
                 class="coupon-title"
+                :class="{ 'font-16': isMobile }"
                 style="text-align:center;"
               >{{ couponItem.title }}</p>
               <!-- <p class="coupon-source">

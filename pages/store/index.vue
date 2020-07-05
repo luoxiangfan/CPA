@@ -1,8 +1,8 @@
 <template>
   <div class="js-site-main site-main">
-    <section class="page-title-banner category-banner d-none d-md-block" style="background-color: rgba(250,250,250,1);">
+    <section class="page-title-banner category-banner" style="background-color: rgba(250,250,250,1);">
       <div class="container text-center">
-        <h1 class="pc-title-size">
+        <h1 :class="{ 'font-16': isMobile }" style="text-align: center;">
           Stores in
           <nuxt-link to="/">Couponpa.com</nuxt-link>
         </h1>
@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
           <ul class="paginate-list col-12 d-flex flex-wrap justify-content-lg-center">
             <li v-for="item in storeTypeList" :key="item.id">
-              <nuxt-link exact-active-class="active" :class="`word-${item.value}`" :to="`/store?word=${item.value}`" @click="storeTypeSearch">{{ item.value }}</nuxt-link>
+              <nuxt-link exact-active-class="active" :class="{ 'font-16': isMobile }" :to="`/store?word=${item.value}`" @click="storeTypeSearch">{{ item.value }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -35,10 +35,11 @@
           >
             <nuxt-link
               class="cover-wrap"
+              :class="{ 'height-133': isMobile }"
               style="height: 176px;border: 1px solid #ececec;border-radius: 5px;"
               :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`"
             >
-              <div class="cover" style="border:none;width:100%;height: 100%;">
+              <div class="cover" :class="{ 'p-l-r-10': isMobile }" style="border:none;width:100%;height: 100%;">
                 <div
                   style="width: 100%;height: 80%;text-align: center;display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;"
                 >
@@ -49,7 +50,7 @@
                     :title="item.name"
                   />
                 </div>
-                <span style="font-size:14px;">{{ item.name }}</span>
+                <span style="font-size:14px;" :class="{ 'font-12': isMobile }">{{ item.name }}</span>
               </div>
             </nuxt-link>
           </div>

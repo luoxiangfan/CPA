@@ -26,7 +26,7 @@
           </div>
           <div class="mobile-about-layout-box" v-if="isMobile">
             <mobile-tab />
-            <div class="about-main-content-box">
+            <div class="about-main-content-box" style="margin-top: 20px;">
               <div class="about-main-title-box">About us</div>
               <div class="about-main-box" v-exchangeHtml:foo='about.AboutUs'></div>
             </div>

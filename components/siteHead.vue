@@ -119,6 +119,7 @@
               <div class="nav-link">
                 <a
                   href=""
+                  :class="{ 'mobile-font': isMobile }"
                   style="text-decoration: none;color: #151515;font-size: 14px;font-weight: 500;text-transform: capitalize;"
                 >All Stores</a>
               </div>
@@ -132,6 +133,7 @@
               <div class="nav-link">
                 <a
                   href=""
+                  :class="{ 'mobile-font': isMobile }"
                   style="text-decoration: none;color: #151515;font-size: 14px;font-weight: 500;text-transform: capitalize;"
                 >Categories</a>
               </div>
@@ -148,7 +150,7 @@
           <div class="input-group">
             <input
               type="search"
-              class="js-search__input form-control"
+              class="js-search__input form-control mobile-search-input"
               placeholder="Search coupons and deals for your favourite stores"
               data-provide="typeahead"
               required
@@ -189,22 +191,25 @@
                 </a>
               </li>
             </ul>
-            <button class="btn" type="button" style="background-image: url(/img/search.webp);background-repeat: no-repeat;background-position: center;">
-              <!-- <i class="fa fa-search"></i> -->
-            </button>
+            <!-- <button class="btn" type="button" style="background-image: url(/img/search.webp);background-repeat: no-repeat;background-position: center;"></button> -->
           </div>
           <!-- End Search Field -->
         </form>
       </li>
     </ul>
+    <!-- <mobile-tab /> -->
   </header>
 </template>
 
 <script>
 import $ from 'jquery';
 import { mapState } from "vuex";
+// import mobileTab from '~/components/mobileTab'
 export default {
   name: "siteHead",
+  // components: {
+  //   mobileTab
+  // },
   data () {
     return {
       word: "",
