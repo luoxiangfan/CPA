@@ -8,8 +8,8 @@
     @click="$emit('close')"
   >
     <div class="modal-dialog modal-dialog-centered" :class="{ 'modal-pc': !isMobile, 'modal-mobile': isMobile }" role="document">
-      <div class="modal-content" :class="{ 'height-100': !isMobile, 'height-100': isMobile }" @click="openModal">
-        <div class="modal-body" :class="{ 'd-flex justify-content-center height-100': !isMobile, 'd-flex justify-content-center height-100': isMobile }" style="padding: 30px;">
+      <div class="modal-content height-100" :class="{ 'height-100': !isMobile, 'height-100': isMobile }" @click="openModal">
+        <div class="modal-body height-100" :class="{ 'd-flex justify-content-center height-100': !isMobile, 'd-flex justify-content-center height-100': isMobile }" style="padding: 30px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
             <span aria-hidden="true">×</span>
           </button>
@@ -37,7 +37,7 @@
                 >{{ currCouponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '') }}</a>
               </p> -->
 
-              <div class="code-box" v-if="currCouponItem.couponType === 'CODE'">
+              <div class="code-box" style="height: 33px;" v-if="currCouponItem.couponType === 'CODE'">
                 <p id="foo">{{ currCouponItem.code }}</p>
                 <button ref="copy" @click="copyLink" data-clipboard-target="#foo" class="btn copy_code" :class="{ 'copy_code_success': copySuccess }" id="copy_code">COPY</button>
               </div>
@@ -60,7 +60,7 @@
                 >{{ couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '') }}</a>
               </p> -->
 
-              <div class="code-box" v-if="couponItem.couponType === 'CODE'">
+              <div class="code-box" style="height: 33px;" v-if="couponItem.couponType === 'CODE'">
                 <p id="foo">{{ couponItem.code }}</p>
                 <button ref="copy" @click="copyLink" data-clipboard-target="#foo" class="btn copy_code" :class="{ 'copy_code_success': copySuccess }" id="copy_code">COPY</button>
               </div>
@@ -111,7 +111,7 @@ export default {
       _this.$emit('open')
       const clipboard = this.copyBtn;
       clipboard.on("success", function (e) {
-        _this.$refs.copy.textContent = 'SUCCESS'
+        _this.$refs.copy.textContent = 'COPED'
         _this.copySuccess = true
         e.clearSelection();
       });

@@ -102,7 +102,7 @@
               class="store-grid-item cover-wrap"
               :class="{ 'store-coupon-btn-pc': !isMobile, 'index-store-coupon-btn-m': isMobile }"
               :to="`/store/${item.website.replace('http://', '').replace('www.', '').replace('https://', '')}`">
-              <div class="cover" :class="{ 'store-img-wrap-m': isMobile }" style="border: 1px solid rgb(220, 220, 220,1);">
+              <div class="cover" :class="{ 'store-img-wrap-m width-100': isMobile }" style="border: 1px solid rgb(220, 220, 220,1);">
                 <img
                   :src="item.logoUrl"
                   class="align-self-center"
@@ -168,23 +168,25 @@
                     <span :class="{ 'coupon-label': !isMobile, 'index-coupon-label': isMobile }" v-if="isMobile && item.couponType === 'DEAL'" class="coupon-label--deal" style="border-radius:5px;">{{ item.couponType }}</span>
                   </div>
                   <div class="info-box" :class="{ 'width-70 coupon-img': !isMobile }" style="width: 65%;">
-                    <div
+                    <a
                       rel="nofollow"
                       class="coupon-title text-left"
+                      target="_self"
+                      :href="`http://${item.storeWebSite}`"
                       @click="saveCurrCouponItem(item)"
                       style="cursor:pointer;"
                     >
                       <h3 class="category-coupon-title" :class="{ 'coupon-font-style': isMobile }" style="margin:0;">{{ item.title }}</h3>
                       <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;margin-left:0;">{{ item.couponType }}</span>
-                    </div>
-                    <div
+                    </a>
+                    <a
                       v-if="isMobile && item.couponType === 'CODE'"
                       rel="nofollow"
                       class="get_code d-block d-lg-none"
                       :class="{ 'index-coupon-btn-m': isMobile }"
                       target="_self"
                       @click="saveCurrCouponItem(item)"
-                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
+                      :href="`http://${item.storeWebSite}`"
                     >
                       <div :class="{ 'coupon-hop': !isMobile, 'coupon-hop-index': isMobile }">
                         <div class="partial-code">{{ (item.code !== null && item.code !== '') ? item.code.substring(item.code.length - 1) : '' }}</div>
@@ -192,15 +194,15 @@
                           <span>Show Code</span>
                         </div>
                       </div>
-                    </div>
+                    </a>
                     <div
                       v-if="isMobile && item.couponType === 'DEAL'"
                       rel="nofollow"
-                      class="get_deal btn-get-deal d-block d-lg-none"
-                      style="right:0;left:26%;transform: scale(0.8);font-size:12px;border-radius: 5px;"
+                      class="get_deal d-block d-lg-none"
+                      :class="{ 'index-deal-btn-m': isMobile }"
                       target="_self"
                       @click="saveCurrCouponItem(item)"
-                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
+                      :href="`http://${item.storeWebSite}`"
                     >GET DEAL</div>
                   </div>
                 </div>
@@ -275,7 +277,7 @@
         <div class="show visible-md">
           <div class="row">
             <div class="top-store-item-box col-4 col-md-4 col-lg-2 p-2" v-for="item in topCategoryList" :key="item.id">
-              <nuxt-link class="store-grid-item cover-wrap" :to="`/category/${item.name}`">
+              <nuxt-link class="store-grid-item cover-wrap" style="background-color: rgba(250,250,250,1);" :to="`/category/${item.name}`">
                 <div class="cover">
                   <img :src="item.logo" class="align-self-center" :alt="`${item.name} coupons`" :title="item.name" style="width: auto;height: auto;" />
                 </div>
@@ -363,7 +365,13 @@ export default {
     },
     saveCurrCouponItem (item) {
       localStorage.setItem('couponItem', JSON.stringify(item))
-      this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
+      // window.location.href = item.storeWebSite
+      // this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
+      const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.outSiteCouponId}`
+      window.open(url)
+      if (this.$route.query.c && (item.id === Number(this.$route.query.c))) {
+        this.dialogVisible = true
+      }
     }
   }
 };

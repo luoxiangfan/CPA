@@ -1,5 +1,5 @@
 <template>
-  <div class="js-site-main site-main">
+  <div class="js-site-main site-main" :class="{ 'pb-20': isMobile }" style="background-color: rgba(250,250,250,1);">
     <section class="page-title-banner category-banner" style="background-color: rgba(250,250,250,1);">
       <div class="container text-center">
         <h1 :class="{ 'font-16': isMobile }" style="text-align: center;">
@@ -21,9 +21,10 @@
         </div>
       </div>
     </section>
-    <section class="container-wrap mb-2" style="background-color: rgba(250,250,250,1);padding-bottom: 5%;">
+    <section class="container-wrap" :class="{ 'store-index-mobile-content bgc-m-w': isMobile }" style="background-color: rgba(250,250,250,1);padding-bottom: 5%;">
       <div
         class="container store-grid-container"
+        :class="{ 'mt-13': isMobile }"
         v-if="$route.fullPath === '/store' || $route.query.word === 'TOP'"
       >
         <div class="row" style="justify-content: space-between;margin: 0;">
@@ -50,7 +51,8 @@
                     :title="item.name"
                   />
                 </div>
-                <span style="font-size:14px;" :class="{ 'font-12': isMobile }">{{ item.name }}</span>
+                <span v-if="!isMobile" style="font-size:14px;" :class="{ 'font-12': isMobile }">{{ item.name }}</span>
+                <h4 v-else style="font-size:14px;" :class="{ 'font-12 store-index-name': isMobile }">{{ item.name }}</h4>
               </div>
             </nuxt-link>
           </div>

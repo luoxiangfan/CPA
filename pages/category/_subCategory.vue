@@ -85,23 +85,25 @@
                     <span class="coupon-label" v-if="isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="margin-top:5px;justify-content: center;align-items: center;display: flex;width:47px;height: 20px;border-radius:5px;">{{ item.couponType }}</span>
                   </div>
                   <div class="info-box" :class="{ 'coupon-img': !isMobile }" style="width: 60%;">
-                    <div
+                    <a
                       rel="nofollow"
+                      target="_self"
                       class="coupon-title text-left"
                       @click="saveCurrCouponItem(item)"
                       style="cursor:pointer;"
+                      :href="`${item.link}` || `http://${item.storeWebSite}`"
                     >
                       <h3 class="category-coupon-title" :class="{ 'category-coupon-title-m': isMobile }" style="margin:0;">{{ item.title }}</h3>
                       <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
-                    </div>
-                    <div
+                    </a>
+                    <a
                       v-if="isMobile && item.couponType === 'CODE'"
                       rel="nofollow"
                       class="get_code d-block d-lg-none"
                       :class="{ 'index-coupon-btn-m': isMobile }"
                       target="_self"
                       @click="saveCurrCouponItem(item)"
-                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
+                      :href="`${item.link}` || `http://${item.storeWebSite}`"
                     >
                       <div :class="{ 'coupon-hop': !isMobile, 'coupon-hop-index': isMobile }">
                         <div class="partial-code">{{ (item.code !== null && item.code !== '') ? item.code.substring(item.code.length - 1) : '' }}</div>
@@ -109,16 +111,16 @@
                           <span>Show Code</span>
                         </div>
                       </div>
-                    </div>
-                    <div
+                    </a>
+                    <a
                       v-if="isMobile && item.couponType === 'DEAL'"
                       rel="nofollow"
                       class="get_deal btn-get-deal-category d-block d-lg-none"
                       style="margin-top: 10px;font-size:12px;"
                       target="_self"
                       @click="saveCurrCouponItem(item)"
-                      :to="`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`"
-                    >GET DEAL</div>
+                      :href="`${item.link}` || `http://${item.storeWebSite}`"
+                    >GET DEAL</a>
                   </div>
                 </div>
               </div>
@@ -291,7 +293,12 @@ export default {
     },
     saveCurrCouponItem (item) {
       localStorage.setItem('couponItem', JSON.stringify(item))
-      this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
+      // this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
+      const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`
+      window.open(url)
+      if (this.$route.query.c && (item.id === Number(this.$route.query.c))) {
+        this.dialogVisible = true
+      }
     }
   }
 };

@@ -1,13 +1,13 @@
 <template>
   <div class="js-site-main site-main">
     <modal v-if="dialogVisible" :dialogVisible="dialogVisible" :currCouponItem="currCouponItem" @close="dialogVisible = false" @open="dialogVisible = true" />
-    <section class="page-title-banner" style="border-bottom: 1px solid #E1E1E1;" v-if="isMobile">
+    <section class="page-title-banner" :class="{ 'bgc-m-w': isMobile }" style="border-bottom: 1px solid #E1E1E1;" v-if="isMobile">
       <div class="container store-info-container">
         <div class="row1" style="display: flex;">
           <!-- Profle Content -->
-          <div class="col-lg-2 col-md-3 col-5 d-flex align-items-center">
+          <div class="col-lg-2 col-md-3 col-5 d-flex align-items-center" style="padding-left: 0;">
             <!-- Store Image -->
-            <div class="store-brand cover-wrap">
+            <div class="store-brand cover-wrap" style="height:100%;">
               <a class="cover" :href="(storeDetailData.Advertising && storeDetailData.Advertising !== null && storeDetailData.Advertising !== '') ? storeDetailData.Advertising : storeDetailData.webSiteUrl" target="_blank" rel="nofollow" style="width: 100%;height: auto;border:none;">
                 <img
                   style="width: auto;"
@@ -19,14 +19,15 @@
             </div>
           </div>
           <div>
-            <div style="position:relative;padding-bottom:14px;">
+            <div style="position:relative;padding-bottom:7px;">
               <h1 class="store-name">{{ storeDetailData.showName }}</h1>
               <h3
                 class="store-sys-f"
                 :class="{ 'store-sys': !showMore }"
                 style="font-size: 12px;"
+                @click="seeMore"
               >{{ storeDetailData.storeDescription }}</h3>
-              <span class="store-see-more" v-if="storeDetailData.storeDescription && storeDetailData.storeDescription !== null && storeDetailData.storeDescription !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span>
+              <!-- <span class="store-see-more" v-if="storeDetailData.storeDescription && storeDetailData.storeDescription !== null && storeDetailData.storeDescription !== ''" @click="seeMore" style="color:#999999;">SEE MORE<i class="fa fa-angle-down" :class="{ 'icon-toggle': showMore }" style="padding-left: .5rem;"></i></span> -->
               <!-- Project Progress -->
             </div>
             <div style="margin-top: .5rem;">
@@ -98,7 +99,7 @@
           <div class="col-lg-9 col-12 coupon-container">
             <div class="row">
               <div class="choice" style="width:100%;padding:0;margin:0 15px;border-bottom: 1px solid #E1E1E1;">
-                <button id="type_all" class="btn btn-sm btn-all" :class="{ 'btn-active': allActive, 'font-16': !isMobile }" @click="selectCoupon('')">All Offers</button>
+                <button id="type_all" style="transition:none;" class="btn btn-sm btn-all" :class="{ 'btn-active': allActive, 'font-16': !isMobile }" @click="selectCoupon('')">All Offers</button>
                 <button id="type_code" class="btn btn-sm btn-code" :class="{ 'btn-active': codeActive, 'font-16': !isMobile }" @click="selectCoupon('CODE')">Coupon Codes</button>
                 <button id="type_deal" class="btn btn-sm btn-deal" :class="{ 'btn-active': dealActive, 'font-16': !isMobile }" @click="selectCoupon('DEAL')">Deals</button>
               </div>
@@ -106,7 +107,7 @@
             <div class="row">
               <div class="col-12">
                 <!-- User Block -->
-                <div class="box d-flex my-2 my-sm-3" :class="{ 'box-pc': !isMobile, 'min-height-126': isMobile }" v-for="(couponItem, index) in couponList" :key="index">
+                <div class="box d-flex my-2 my-sm-3" :class="{ 'box-pc': !isMobile, 'mt-14 min-height-126': isMobile }" v-for="(couponItem, index) in couponList" :key="index">
                   <div class="offer d-sm-block">
                     <div
                       class="offer-anchor d-flex flex-column justify-content-center align-items-center"
@@ -148,9 +149,9 @@
                       </div>
                     </a>
                     <a
-                      class="coupon-code-btn get_code coupon-hop-a store-coupon"
+                      class="coupon-code-btn get_code store-coupon"
                       style="width:144px;height:40px;"
-                      :class="{ 'store-coupon-m store-coupon-btn-m': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
+                      :class="{ 'store-coupon-m store-coupon-btn-m line-height-33': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
                       :url="`/store/${couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${couponItem.id}#get_code_${couponItem.id}`"
                       rel="nofollow"
                       target="_self"
@@ -162,7 +163,7 @@
                       v-if="couponItem.couponType === 'DEAL'"
                       class="btn-get-deal-store get_deal store-coupon"
                       style="width:144px;height:40px;"
-                      :class="{ 'store-coupon-m store-coupon-btn-m': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
+                      :class="{ 'store-coupon-m store-coupon-btn-m line-height-33': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
                       rel="nofollow"
                       target="_self"
                       :href="(couponItem.link && (couponItem.link !== '')) ? couponItem.link : couponItem.storeWebSite"

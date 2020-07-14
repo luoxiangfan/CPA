@@ -7,6 +7,9 @@ html {
 main,.bgc-m {
   background-color: rgba(250,250,250,1);
 }
+.bgc-m-w {
+  background-color: #fff !important;
+}
 html,body,div,span,a,h3 {
   margin: 0;
   padding: 0;
@@ -23,6 +26,9 @@ a,a:hover {
 .p-b-3{
   padding-bottom: 3% !important;
 }
+.pb-20{
+  padding-bottom: 20px !important;
+}
 
 .font-20 {
   font-size: 20px !important;
@@ -30,6 +36,18 @@ a,a:hover {
 .coupon-font-style {
   -webkit-line-clamp: 1;
   font-weight: 400 !important;
+}
+.index-deal-btn-m {
+  margin-top: 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  width: 122px;
+  height: 33px;
+  line-height: 33px;
+  text-align: center;
+  color: #fff !important;
+  cursor: pointer;
+  background-image: linear-gradient(-95deg, #3ABB70 1%, #3ABB70 100%);
 }
 .font-16 {
   font-size: 16px !important;
@@ -215,6 +233,33 @@ a{
 }
 .cover-wrap .cover span:hover{
   color:rgba(58,187,112,1);
+}
+.cover-wrap .cover .store-index-name {
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  overflow: hidden;
+  font-size:12px;
+  font-family:Microsoft YaHei UI;
+  font-weight:bold;
+  color:rgba(24,24,24,1);
+}
+.cover-wrap .cover .store-index-name:hover{
+  color:rgba(58,187,112,1);
+}
+.store-index-mobile-content {
+  border-bottom: 1px solid #E1E1E1;
+  border-top: 1px solid #E1E1E1;
+  /* margin-bottom: 20px; */
+}
+.mt-13 {
+  margin-top: 13px;
+}
+.mt-14 {
+  margin-top: 14px !important;
+}
+.mt-9 {
+  margin-top: 9px !important;
 }
 .store-img-wrap-m {
   padding: 0 10px;
@@ -471,9 +516,9 @@ a{
 }
 /*  */
 
-.container-wrap {
+/* .container-wrap {
   background-color: #fff;
-}
+} */
 
 /* Search Banner */
 
@@ -743,7 +788,6 @@ a{
   text-align: center;
   padding: .2rem .6rem;
   margin-top: 4%;
-  margin-left: 4%;
 }
 
 .coupon-item .coupon-label {
@@ -1073,7 +1117,8 @@ a{
 }
 
 .page-title-banner {
-  background: #ffffff;
+  /* background: #ffffff; */
+  background-color: rgba(250,250,250,1);
   padding: 25px 0;
   color: #181818;
 }
@@ -1103,7 +1148,8 @@ a{
 
 @media (max-width: 992px) {
   .page-title-banner {
-    background: #ffffff;
+    /* background: #ffffff; */
+    background-color: rgba(250,250,250,1);
     padding: 15px 0;
   }
   .page-title-banner h1 {
@@ -1145,7 +1191,7 @@ a{
   width: 100%;
   height: 70%;
 }
-.category-container .category-item a:hover{
+.category-container .category-item a:hover p {
   color: #15B911;
 }
 
@@ -1154,9 +1200,9 @@ a{
 }
 
 @media (max-width: 576px) {
-  .category-container {
+  /* .category-container {
     background-color: #fff;
-  }
+  } */
   .category-container .container-title {
     font-size: 16px;
     color: #232323;
@@ -1556,6 +1602,7 @@ a{
 .coupon-container .choice .btn:hover,
 .coupon-container .choice .btn-active {
   /* background: #F68B0F; */
+  box-shadow: none;
   color: #3ABB70;
   border-bottom: 2px solid #3ABB70;
 }
@@ -1586,6 +1633,7 @@ a{
   .coupon-container .choice .btn:hover,
   .coupon-container .choice .btn-active {
     color: #3ABB70;
+    box-shadow: none;
   }
 }
 .box-pc {
@@ -1717,6 +1765,9 @@ a{
   font-size: 18px;
   margin-bottom: 10px;
   letter-spacing: 0;
+}
+.line-height-33 {
+  line-height: 33px !important;
 }
 .height-100 {
   height: 100% !important;
@@ -2250,6 +2301,9 @@ a{
 }
 .width-70 {
   width: 70% !important;
+}
+.width-100 {
+  width: 100% !important;
 }
 
 .store-detail-modal img {
