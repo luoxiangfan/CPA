@@ -115,8 +115,8 @@
                       <span class="offer-anchor-text" :class="{ 'font-20': isMobile }">
                         <span v-for="(saleItem, index) in couponItem.sale.replace(' ', '').split(' ')" :key="index">{{ saleItem }}</span>
                       </span>
-                      <span class="label code" :class="{'font-14': !isMobile}" v-if="couponItem.couponType === 'CODE'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
-                      <span class="label deal" :class="{'font-14': !isMobile}" v-if="couponItem.couponType === 'DEAL'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType }}</span>
+                      <span class="label code" :class="{'font-14': !isMobile}" v-if="couponItem.couponType.toUpperCase() === 'CODE'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType.toUpperCase() }}</span>
+                      <span class="label deal" :class="{'font-14': !isMobile}" v-if="couponItem.couponType.toUpperCase() === 'DEAL'" style="margin-bottom: 0;padding: 0;font-size: 12px;width: 71px;height: 30px;display: flex;justify-content: center;align-items: center;">{{ couponItem.couponType.toUpperCase() }}</span>
                     </div>
                   </div>
                   <div class="detail-info" :class="{ 'justify-content-start store-coupon-detail-info-m': isMobile, 'store-coupon-detail-info': !isMobile }">
@@ -132,7 +132,7 @@
                       <h3 class="paddl store-coupon-desc-display" :class="{ 'store-coupon-desc font-14': !isMobile, 'store-coupon-desc-m': isMobile }" style="margin-bottom:14px;">{{ couponItem.title }}</h3>
                     </a>
                     <a
-                      v-if="(couponItem.couponType === 'CODE') && (showcompleteCode === false)"
+                      v-if="(couponItem.couponType.toUpperCase() === 'CODE') && (showcompleteCode === false)"
                       rel="nofollow"
                       class="get_code"
                       style="width: 144px;height: 38px;position: relative;"
@@ -156,11 +156,11 @@
                       rel="nofollow"
                       target="_self"
                       :href="couponItem.link && couponItem.link !== '' ? couponItem.link : couponItem.storeWebSite"
-                      v-if="(couponItem.couponType === 'CODE') && (showcompleteCode === true)"
+                      v-if="(couponItem.couponType.toUpperCase() === 'CODE') && (showcompleteCode === true)"
                       @click="getDeal(couponItem)"
                     >{{ couponItem.code }}</a>
                     <a
-                      v-if="couponItem.couponType === 'DEAL'"
+                      v-if="couponItem.couponType.toUpperCase() === 'DEAL'"
                       class="btn-get-deal-store get_deal store-coupon"
                       style="width:144px;height:40px;"
                       :class="{ 'store-coupon-m store-coupon-btn-m line-height-33': isMobile, 'store-coupon-pc store-coupon-btn-pc': !isMobile }"
@@ -259,7 +259,7 @@ export default {
         { hid: 'keywords', name: 'keywords', content: this.storeDetailData.keyWords }
       ],
       link: [
-        { rel: 'canonical', href: `https://www.couponpa.com${this.$route.path}` }
+        { rel: 'canonical', href: `https://www.couponpa.com/store/${this.$route.params.subStore}` }
       ],
       script: [
         {

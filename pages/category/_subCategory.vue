@@ -82,7 +82,7 @@
                       :style="{ 'background-image': 'url(\'' + item.storeLogo + '\')' }"
                     >
                     </nuxt-link>
-                    <span class="coupon-label" v-if="isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="margin-top:5px;justify-content: center;align-items: center;display: flex;width:47px;height: 20px;border-radius:5px;">{{ item.couponType }}</span>
+                    <span class="coupon-label" v-if="isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="margin-top:5px;justify-content: center;align-items: center;display: flex;width:47px;height: 20px;border-radius:5px;">{{ item.couponType.toUpperCase() }}</span>
                   </div>
                   <div class="info-box" :class="{ 'coupon-img': !isMobile }" style="width: 60%;">
                     <a
@@ -94,10 +94,10 @@
                       :href="`${item.link}` || `http://${item.storeWebSite}`"
                     >
                       <h3 class="category-coupon-title" :class="{ 'category-coupon-title-m': isMobile }" style="margin:0;">{{ item.title }}</h3>
-                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;">{{ item.couponType }}</span>
+                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;">{{ item.couponType.toUpperCase() }}</span>
                     </a>
                     <a
-                      v-if="isMobile && item.couponType === 'CODE'"
+                      v-if="isMobile && item.couponType.toUpperCase() === 'CODE'"
                       rel="nofollow"
                       class="get_code d-block d-lg-none"
                       :class="{ 'index-coupon-btn-m': isMobile }"
@@ -113,7 +113,7 @@
                       </div>
                     </a>
                     <a
-                      v-if="isMobile && item.couponType === 'DEAL'"
+                      v-if="isMobile && item.couponType.toUpperCase() === 'DEAL'"
                       rel="nofollow"
                       class="get_deal btn-get-deal-category d-block d-lg-none"
                       style="margin-top: 10px;font-size:12px;"

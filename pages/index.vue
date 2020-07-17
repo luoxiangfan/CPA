@@ -164,8 +164,8 @@
                       :style="{ 'background-image': 'url(\'' + item.storeLogeUrl + '\')' }"
                     >
                     </nuxt-link>
-                    <span :class="{ 'coupon-label': !isMobile, 'index-coupon-label': isMobile }" v-if="isMobile && item.couponType === 'CODE'" class="coupon-label--code" style="border-radius:5px;">{{ item.couponType }}</span>
-                    <span :class="{ 'coupon-label': !isMobile, 'index-coupon-label': isMobile }" v-if="isMobile && item.couponType === 'DEAL'" class="coupon-label--deal" style="border-radius:5px;">{{ item.couponType }}</span>
+                    <span :class="{ 'coupon-label': !isMobile, 'index-coupon-label': isMobile }" v-if="isMobile && item.couponType.toUpperCase() === 'CODE'" class="coupon-label--code" style="border-radius:5px;">{{ item.couponType.toUpperCase() }}</span>
+                    <span :class="{ 'coupon-label': !isMobile, 'index-coupon-label': isMobile }" v-if="isMobile && item.couponType.toUpperCase() === 'DEAL'" class="coupon-label--deal" style="border-radius:5px;">{{ item.couponType.toUpperCase() }}</span>
                   </div>
                   <div class="info-box" :class="{ 'width-70 coupon-img': !isMobile }" style="width: 65%;">
                     <a
@@ -177,10 +177,10 @@
                       style="cursor:pointer;"
                     >
                       <h3 class="category-coupon-title" :class="{ 'coupon-font-style': isMobile }" style="margin:0;">{{ item.title }}</h3>
-                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;margin-left:0;">{{ item.couponType }}</span>
+                      <span class="coupon-label-pc coupon-label-size d-none d-lg-inline-block" v-if="!isMobile" :class="`coupon-label--${item.couponType.toLowerCase()}`" style="font-size: 12px;border-radius:3px;margin-left:0;">{{ item.couponType.toUpperCase() }}</span>
                     </a>
                     <a
-                      v-if="isMobile && item.couponType === 'CODE'"
+                      v-if="isMobile && item.couponType.toUpperCase() === 'CODE'"
                       rel="nofollow"
                       class="get_code d-block d-lg-none"
                       :class="{ 'index-coupon-btn-m': isMobile }"
@@ -196,7 +196,7 @@
                       </div>
                     </a>
                     <div
-                      v-if="isMobile && item.couponType === 'DEAL'"
+                      v-if="isMobile && item.couponType.toUpperCase() === 'DEAL'"
                       rel="nofollow"
                       class="get_deal d-block d-lg-none"
                       :class="{ 'index-deal-btn-m': isMobile }"
