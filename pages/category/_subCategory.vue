@@ -292,13 +292,11 @@ export default {
       })
     },
     saveCurrCouponItem (item) {
-      localStorage.setItem('couponItem', JSON.stringify(item))
+      // localStorage.setItem('couponItem', JSON.stringify(item))
       // this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
-      const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`
+      // const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`
+      const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.id}`
       window.open(url)
-      if (this.$route.query.c && (item.id === Number(this.$route.query.c))) {
-        this.dialogVisible = true
-      }
     }
   }
 };

@@ -55,7 +55,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://47.241.6.230:8080/coupons-management/'
+    baseURL: 'http://161.117.81.243:9000/coupons-site/'
   },
   /*
   ** Build configuration

@@ -364,14 +364,11 @@ export default {
       });
     },
     saveCurrCouponItem (item) {
-      localStorage.setItem('couponItem', JSON.stringify(item))
+      // localStorage.setItem('couponItem', JSON.stringify(item))
       // window.location.href = item.storeWebSite
       // this.$router.push(`/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.couponId}`)
       const url = `/store/${item.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}?c=${item.outSiteCouponId}`
       window.open(url)
-      if (this.$route.query.c && (item.id === Number(this.$route.query.c))) {
-        this.dialogVisible = true
-      }
     }
   }
 };

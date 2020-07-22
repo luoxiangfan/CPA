@@ -213,6 +213,7 @@ export default {
   data () {
     return {
       word: "",
+      num: 10,
       resData: {
         storeTypes: [],
         stores: []
@@ -238,56 +239,96 @@ export default {
     })
   },
   methods: {
-    querySearch () {
+    // querySearch () {
+    //   const params = {
+    //     keys: this.word
+    //   };
+    //   if (params.keys && params.keys !== "") {
+    //     this.$axios
+    //       .post(
+    //         "CPA/getSearch",
+    //         params
+    //       )
+    //       .then(resp => {
+    //         if (
+    //           resp &&
+    //           resp.data.data &&
+    //           (resp.data.data.storeTypes.length !== 0 ||
+    //           resp.data.data.stores.length !== 0)
+    //         ) {
+    //           this.resData = {
+    //             storeTypes: resp.data.data.storeTypes,
+    //             stores: resp.data.data.stores
+    //           };
+    //           if (this.isMobile) {
+    //             $('#header_search_ul_mobile').show()
+    //           } else {
+    //             $('#header_search_ul').show()
+    //           }
+    //         } else {
+    //           // $('#header_search_ul').hide()
+    //           if (this.isMobile) {
+    //             $('#header_search_ul_mobile').hide()
+    //           } else {
+    //             $('#header_search_ul').hide()
+    //           }
+    //           this.resData = {
+    //             storeTypes: [],
+    //             stores: []
+    //           };
+    //         }
+    //       });
+    //   } else {
+    //     // $('#header_search_ul').hide()
+    //     if (this.isMobile) {
+    //       $('#header_search_ul_mobile').hide()
+    //     } else {
+    //       $('#header_search_ul').hide()
+    //     }
+    //     this.resData = {
+    //       storeTypes: [],
+    //       stores: []
+    //     };
+    //   }
+    // },
+    async querySearch () {
+      this.num++;
+      const a = this.num;
       const params = {
         keys: this.word
       };
-      if (params.keys && params.keys !== "") {
-        this.$axios
-          .post(
-            "CPA/getSearch",
-            params
-          )
-          .then(resp => {
-            if (
-              resp &&
-              resp.data.data &&
-              (resp.data.data.storeTypes.length !== 0 ||
-              resp.data.data.stores.length !== 0)
-            ) {
-              this.resData = {
-                storeTypes: resp.data.data.storeTypes,
-                stores: resp.data.data.stores
-              };
-              if (this.isMobile) {
-                $('#header_search_ul_mobile').show()
-              } else {
-                $('#header_search_ul').show()
-              }
-            } else {
-              // $('#header_search_ul').hide()
-              if (this.isMobile) {
-                $('#header_search_ul_mobile').hide()
-              } else {
-                $('#header_search_ul').hide()
-              }
-              this.resData = {
-                storeTypes: [],
-                stores: []
-              };
-            }
-          });
-      } else {
-        // $('#header_search_ul').hide()
-        if (this.isMobile) {
-          $('#header_search_ul_mobile').hide()
-        } else {
-          $('#header_search_ul').hide()
+      if (this.word !== '') {
+        const result = await this.$axios.post("CPA/getSearch", params)
+        if (!result) {
+          return;
         }
+        if (a === this.num) {
+          this.resData = {
+            storeTypes: result.data.data.storeTypes,
+            stores: result.data.data.stores
+          }
+          if ((result.data.data.storeTypes.length !== 0) || (result.data.data.stores.length !== 0)) {
+            if (this.isMobile) {
+              $("#header_search_ul_mobile").show();
+            } else {
+              $("#header_search_ul").show();
+            }
+          } else if (this.isMobile) {
+            $("#header_search_ul_mobile").hide();
+          } else {
+            $("#header_search_ul").hide();
+          }
+        }
+      } else {
         this.resData = {
           storeTypes: [],
           stores: []
-        };
+        }
+        if (this.isMobile) {
+          $("#header_search_ul_mobile").hide();
+        } else {
+          $("#header_search_ul").hide();
+        }
       }
     },
     reset (e) {

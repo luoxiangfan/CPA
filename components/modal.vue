@@ -18,9 +18,6 @@
               <a :class="{ 'modal-img-wrap-pc': !isMobile }" class="cover" v-if="currCouponItem && currCouponItem !== {}" :href="`/store/${currCouponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
                 <img :class="{ 'modal-img-pc': !isMobile }" :alt="currCouponItem.name" :src="currCouponItem.storeLogo" />
               </a>
-              <a :class="{ 'modal-img-wrap-pc': !isMobile }" class="cover" v-if="couponItem && currCouponItem === undefined && couponItem !== {}" :href="`/store/${couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '')}`">
-                <img :class="{ 'modal-img-pc': !isMobile }" :alt="couponItem.storeName" :src="couponItem.storeLogo" />
-              </a>
             </div>
             <div class="text-content col-12" :class="{ 'd-flex justify-content-center flex-column': !isMobile }" v-if="currCouponItem && currCouponItem !== undefined && currCouponItem !== {}">
               <p
@@ -45,29 +42,6 @@
                 <a :href="currCouponItem.link && currCouponItem.link !== '' ? currCouponItem.link : currCouponItem.storeWebSite" class="btn" style="width: 60%;">GO TO STORE</a>
               </div>
             </div>
-            <div class="text-content col-12" v-if="couponItem && currCouponItem === undefined && couponItem !== {}">
-              <p
-                class="coupon-title"
-                :class="{ 'font-16': isMobile }"
-                style="text-align:center;"
-              >{{ couponItem.title }}</p>
-              <!-- <p class="coupon-source">
-                <span style="color: #7D7D7D;" class="mr-1">{{ couponItem.storeName }}</span>
-                <a
-                  style="color: #269AC8;font-size: 12px;"
-                  rel="nofollow"
-                  :href="couponItem.link && couponItem.link !== '' ? couponItem.link : couponItem.storeWebSite"
-                >{{ couponItem.storeWebSite.replace('http://', '').replace('www.', '').replace('https://', '') }}</a>
-              </p> -->
-
-              <div class="code-box" style="height: 33px;" v-if="couponItem.couponType === 'CODE'">
-                <p id="foo">{{ couponItem.code }}</p>
-                <button ref="copy" @click="copyLink" data-clipboard-target="#foo" class="btn copy_code" :class="{ 'copy_code_success': copySuccess }" id="copy_code">COPY</button>
-              </div>
-              <div class="link-box" v-if="couponItem.couponType === 'DEAL'" style="text-align: center;">
-                <a :href="couponItem.link && couponItem.link !== '' ? couponItem.link : couponItem.storeWebSite" class="btn" style="width: 60%;">GO TO STORE</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -88,20 +62,12 @@ export default {
   data () {
     return {
       copyBtn: null,
-      copySuccess: false,
-      couponItem: (localStorage.getItem('couponItem') && JSON.parse(localStorage.getItem('couponItem')) && JSON.parse(localStorage.getItem('couponItem')) !== {}) ? JSON.parse(localStorage.getItem('couponItem')) : {}
+      copySuccess: false
     };
   },
   mounted () {
-    if (this.couponItem && this.currCouponItem === undefined && this.couponItem.couponType) {
-      if (this.couponItem.couponType === 'CODE') {
-        this.copyBtn = new ClipboardJS(this.$refs.copy);
-      }
-    }
-    if (this.currCouponItem && this.currCouponItem !== undefined && this.currCouponItem.couponType) {
-      if (this.currCouponItem.couponType === 'CODE') {
-        this.copyBtn = new ClipboardJS(this.$refs.copy);
-      }
+    if (this.currCouponItem.couponType === 'CODE') {
+      this.copyBtn = new ClipboardJS(this.$refs.copy);
     }
   },
   methods: {
