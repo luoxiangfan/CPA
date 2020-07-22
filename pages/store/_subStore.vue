@@ -99,9 +99,9 @@
           <div class="col-lg-9 col-12 coupon-container">
             <div class="row">
               <div class="choice" style="width:100%;padding:0;margin:0 15px;border-bottom: 1px solid #E1E1E1;">
-                <button id="type_all" style="transition:none;" class="btn btn-sm btn-all" :class="{ 'btn-active': allActive, 'font-16': !isMobile }" @click="selectCoupon('')">All Offers</button>
-                <button id="type_code" class="btn btn-sm btn-code" :class="{ 'btn-active': codeActive, 'font-16': !isMobile }" @click="selectCoupon('CODE')">Coupon Codes</button>
-                <button id="type_deal" class="btn btn-sm btn-deal" :class="{ 'btn-active': dealActive, 'font-16': !isMobile }" @click="selectCoupon('DEAL')">Deals</button>
+                <button id="type_all" style="transition:none;" class="btn btn-sm btn-all" :class="{ 'btn-active': couponBtnActive === 0, 'font-16': !isMobile }" @click="selectCoupon('')">All Offers</button>
+                <button id="type_code" class="btn btn-sm btn-code" :class="{ 'btn-active': couponBtnActive === 1, 'font-16': !isMobile }" @click="selectCoupon('CODE')">Coupon Codes</button>
+                <button id="type_deal" class="btn btn-sm btn-deal" :class="{ 'btn-active': couponBtnActive === 2, 'font-16': !isMobile }" @click="selectCoupon('DEAL')">Deals</button>
               </div>
             </div>
             <div class="row">
@@ -243,9 +243,7 @@ export default {
       storeDetailData: {},
       couponList: [],
       couponSelectList: {},
-      allActive: false,
-      dealActive: false,
-      codeActive: false,
+      couponBtnActive: 0, // 0代表All Offers，1表示CouponCodes，2表示Deals
       currCouponItem: {},
       showMore: false,
       showcompleteCode: false
@@ -276,7 +274,7 @@ export default {
     if (this.$route.query.coupon_type) {
       this.highlightCouponBtn(this.$route.query.coupon_type)
     } else {
-      this.allActive = true
+      this.couponBtnActive = 0
     }
   },
   mounted () {
@@ -284,23 +282,22 @@ export default {
   },
   methods: {
     highlightCouponBtn (type) {
-      if (!(this.$route.query.coupon_type) && ((this.codeActive === false) && (this.dealActive === false))) {
-        this.allActive = true
+      if (!(this.$route.query.coupon_type)) {
+        this.couponBtnActive = 0
       }
-      if (type === '') {
-        this.allActive = true
-        this.codeActive = false
-        this.dealActive = false
-      }
-      if (type === 'CODE') {
-        this.codeActive = true
-        this.dealActive = false
-        this.allActive = false
-      }
-      if (type === 'DEAL') {
-        this.dealActive = true
-        this.allActive = false
-        this.codeActive = false
+      switch (type) {
+        case '':
+          this.couponBtnActive = 0
+          break;
+        case 'CODE':
+          this.couponBtnActive = 1
+          break;
+        case 'DEAL':
+          this.couponBtnActive = 2
+          break;
+        default:
+          this.couponBtnActive = 0
+          break;
       }
     },
     selectCoupon (type) {

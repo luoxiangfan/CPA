@@ -63,9 +63,9 @@
             </nav>
             <div class="row p-l-r-15" style="margin:0;">
               <div class="col-12 choice" style="padding: 0;border-bottom:1px solid #E1E1E1;display: flex;align-items: center;position: relative;">
-                <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': allActive, 'font-16': !isMobile}" @click="selectCoupon('')">All Offers</button>
-                <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': codeActive, 'font-16': !isMobile}" @click="selectCoupon('CODE')">Coupon Codes</button>
-                <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': dealActive, 'font-16': !isMobile}" @click="selectCoupon('DEAL')">Deals</button>
+                <button id="type_all" class="btn btn-sm btn-all" :class="{'btn-active': couponBtnActive === 0, 'font-16': !isMobile}" @click="selectCoupon('')">All Offers</button>
+                <button id="type_code" class="btn btn-sm btn-code" :class="{'btn-active': couponBtnActive === 1, 'font-16': !isMobile}" @click="selectCoupon('CODE')">Coupon Codes</button>
+                <button id="type_deal" class="btn btn-sm btn-deal" :class="{'btn-active': couponBtnActive === 2, 'font-16': !isMobile}" @click="selectCoupon('DEAL')">Deals</button>
                 <span class="mb-0 category-offer-num" :class="{ 'font-12': isMobile }">{{ couponCount }} Offers</span>
               </div>
             </div>
@@ -179,11 +179,8 @@ export default {
       resData: {},
       couponPage: {},
       currPageNumber: 1,
-      allActive: false,
-      dealActive: false,
-      codeActive: false,
       couponType: '',
-      typeActive: false,
+      couponBtnActive: 0, // 0代表All Offers，1表示CouponCodes，2表示Deals
       couponCount: 0,
       currPage: 1
     }
@@ -202,7 +199,7 @@ export default {
       this.highlightCouponBtn(this.$route.query.coupon_type)
       this.couponType = this.$route.query.coupon_type
     } else {
-      this.allActive = true
+      this.couponBtnActive = 0
     }
   },
   methods: {
@@ -220,23 +217,22 @@ export default {
       }
     },
     highlightCouponBtn (type) {
-      if (!(this.$route.query.coupon_type) && ((this.codeActive === false) && (this.dealActive === false))) {
-        this.allActive = true
+      if (!(this.$route.query.coupon_type)) {
+        this.couponBtnActive = 0
       }
-      if (type === '') {
-        this.allActive = true
-        this.codeActive = false
-        this.dealActive = false
-      }
-      if (type === 'CODE') {
-        this.codeActive = true
-        this.dealActive = false
-        this.allActive = false
-      }
-      if (type === 'DEAL') {
-        this.dealActive = true
-        this.allActive = false
-        this.codeActive = false
+      switch (type) {
+        case '':
+          this.couponBtnActive = 0
+          break;
+        case 'CODE':
+          this.couponBtnActive = 1
+          break;
+        case 'DEAL':
+          this.couponBtnActive = 2
+          break;
+        default:
+          this.couponBtnActive = 0
+          break;
       }
     },
     selectCoupon (type) {
